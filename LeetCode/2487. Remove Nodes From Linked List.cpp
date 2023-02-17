@@ -19,6 +19,29 @@ Return the head of the modified linked list.
  */
 class Solution {
 public:
+    /* Recursive Approach */
+    ListNode* removeNodes(ListNode* head) {
+        if (!head) return nullptr;
+        else if (!head->next) return head;
+
+        // Since we have to delete every node that has a lower value than any other node after it,
+        // head->next certainly is the node which has the higher value among all nodes at the right
+        // side of the list (with current 'head' as reference).
+        // Note that the resulting list will ALWAYS be in decreasing order 
+        head->next = removeNodes(head->next);
+        if (head->val < head->next->val)
+        {
+            ListNode *toDelete = head;
+            head = head->next;
+            delete toDelete;
+        }
+
+        return head;
+    }
+
+
+    /* Iterative Approach */
+    /*
     ListNode* removeNodes(ListNode* head) {
         stack<ListNode*> nodes; // With this stack we can access the nodes backwards
         int greaterValue;
@@ -58,4 +81,5 @@ public:
 
         return head;
     }
+    */
 };
