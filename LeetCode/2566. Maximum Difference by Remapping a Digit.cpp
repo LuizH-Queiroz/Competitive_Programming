@@ -47,7 +47,6 @@ public:
             }
         }
 
-        cout << strMax << " " << strMin << endl;
         return (stoi(strMax) - stoi(strMin));
     }
 };
